@@ -1,3 +1,5 @@
 what.txt
-bot/config.env
+config.env
 experimental
+.pytest_cache
+__pycache__
