@@ -5,4 +5,4 @@ run:
 	python.exe bot/main.py 
 
 test:
-	pytest
+	pytest --showlocals -s
