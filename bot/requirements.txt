@@ -1,3 +1,5 @@
 dnspython
 pymongo
 pytest
+load_dotenv
+loguru
