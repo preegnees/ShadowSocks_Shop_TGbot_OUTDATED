@@ -4,3 +4,4 @@ pytest
 load_dotenv
 loguru
 aiogram
+yoomoney
