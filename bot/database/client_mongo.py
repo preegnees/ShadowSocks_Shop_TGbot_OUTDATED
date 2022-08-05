@@ -5,7 +5,7 @@ def get_dbclient(config: dict) -> MongoClient:
     SERVER = config["database_server"]
     PORT = config["database_port"]
     URL = f"mongodb://{SERVER}:{PORT}"
-    logger.debug("URL: ", URL)
+    logger.debug(f"URL: {URL}. PORT: {PORT}. SERVER: {SERVER}")
     client = MongoClient(URL)
     try:
         client.admin.command("ping")
