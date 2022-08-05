@@ -3,3 +3,4 @@ pymongo
 pytest
 load_dotenv
 loguru
+aiogram
