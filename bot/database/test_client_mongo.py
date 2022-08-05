@@ -1,6 +1,6 @@
 import pytest
 
-from client_mongo import get_dbclient
+from database.client_mongo import get_dbclient
 
 def test_get_dbclient():
     config = {"database_name":"ss-shop", "database_port":"27017", "database_server":"localhost"}
