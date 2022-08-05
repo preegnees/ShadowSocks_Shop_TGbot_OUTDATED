@@ -2,7 +2,7 @@ from aiogram import Bot, types
 from aiogram.dispatcher import Dispatcher
 from loguru import logger
 from aiogram.utils import executor
-from .handler import process_start_command_handler, procss_bye_command_handler, procss_test_command_handler
+from middleware.handler import process_start_command_handler
 
 
 def run_bot(config: dict):    
@@ -20,15 +20,7 @@ def run_bot(config: dict):
 
     @dp.message_handler(commands=['start'])
     async def process_start_command(message: types.Message):
-        await message.reply(process_start_command_handler())
-    
-    @dp.message_handler(commands="bye")
-    async def procss_bye_command(message: types.Message):
-        await message.reply(procss_bye_command_handler(str(message.text)))
-        
-    @dp.message_handler(commands="test")
-    async def procss_test_command(message: types.Message):
-        await message.reply(procss_test_command_handler())
+        await message.reply(process_start_command_handler(message.from_user.id, message.from_user.username))
 
     logger.info("bot is initialized")
     executor.start_polling(dp)
