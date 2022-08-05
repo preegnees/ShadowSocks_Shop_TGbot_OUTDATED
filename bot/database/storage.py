@@ -18,9 +18,6 @@ class Storage(IStorage):
     def __init__(self, cnf):
         self.config = cnf
         self.clinet = init(self.config)
-    def __del__(self):
-        self.client.close()
-        logger.debug("client mongo closed")
         
 
     def hello(self) -> str:
