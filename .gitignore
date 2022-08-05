@@ -3,3 +3,4 @@ config.env
 experimental
 .pytest_cache
 __pycache__
+.idea
