@@ -21,7 +21,7 @@ def test_get_user():
     assert(username == None)
 
 
-def test_get_last_label_by_id_m():
+def test_get_last_transaction_m():
     init_m(cnf)
     lable = "hello wordl"
     tg_id = "56786787"
