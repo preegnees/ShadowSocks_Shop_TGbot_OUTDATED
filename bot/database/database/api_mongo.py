@@ -78,8 +78,8 @@ def get_all_transaction_m(id_tg: str):
     find = {
         "id_tg": id_tg
     }
-    result = client[cnf["database_name"]]["label_and_id"].find(find)
-    logger.debug(f"get_last_label_by_id_m. tg_id: {id_tg}, lable: {result}")
+    result = client[cnf["database_name"]]["label_and_id"].find(find).sort("time_started", -1)
+    logger.debug(f"get_all_transaction_m. tg_id: {id_tg}, result: {result}")
     if result is None:
         return [None, None, None, None, None]
     return result
@@ -91,7 +91,7 @@ def get_last_transaction_m(id_tg: str):
         "id_tg": id_tg
     }
     result = client[cnf["database_name"]]["label_and_id"].find(find).sort("time_created", -1).limit(1)[0]
-    logger.debug(f"get_last_label_by_id_m. tg_id: {id_tg}, lable: {result}")
+    logger.debug(f"get_last_transaction_m. tg_id: {id_tg}, result: {result}")
     if result is None:
         return [None, None, None, None, None]
     return [result["id_tg"], result["lable"], result["time_created"], result["amount"], result["confirmed"]]
