@@ -68,7 +68,7 @@ def test_get_all_transaction_m():
     save_transaction_m(lable, tg_id, time_created, amount)
     confirm_transaction_m(lable)
     
-    result = get_all_transaction_m(tg_id)
+    result = get_all_transaction_m(tg_id)  
     count = 0
     for _ in result:
         count += 1
