@@ -13,9 +13,25 @@ def get_status(storage, id) -> str:
     return status
     
 def get_history(storage, id):
-    pass
+    if _verification_user(storage, id) == False:
+        logger.error(f"username is None, id: {id}")
+        exit(0)
+    history = _create_history(storage, id)
+    return history
     
-
+def _create_history(storage, id):
+    all_transaction = storage.get_all_transaction(id)
+    history = ""
+    index = 1
+    for i in all_transaction:
+        if int(i["confirmed"]) == 0:
+            continue
+        date = _milliseconds_to_human_date(int(i["time_created"]))
+        amount = i["amount"]
+        history += f"\n-->{str(index)};\nДата: {date};\nЦена: {amount}.\n"
+        index += 1
+    return history
+    
 
 def _verification_user(storage, id) -> bool:
     username, tg_id = storage.get_user(id)
@@ -36,14 +52,14 @@ def _create_status(storage, id) -> str:
     return status
 
 def _bad_status() -> str:
-    stauts = f"--> Вы не оплатитли этот месяц;"
+    stauts = f"\n--> Вы не оплатитли этот месяц;"
     return stauts
 
 def _good_status(time_created, amount) -> str:
     # тут где то нужно получить конфигурацию
     conf = "Тут должна быть конфигурация"
     date = _milliseconds_to_human_date(time_created)
-    stauts = f"--> оплачено до конца этого месяца;\nдата оплаты: {date};\nсумма: {amount} руб.\nваша конфигурация: {conf}"
+    stauts = f"\n--> оплачено до конца этого месяца;\nдата оплаты: {date};\nсумма: {amount} руб.\nваша конфигурация: {conf}"
     return stauts
 
 def _whether_to_send_config(time_created, confirmed) -> bool:
