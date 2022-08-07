@@ -5,3 +5,5 @@ load_dotenv
 loguru
 aiogram
 yoomoney
+bson
+calendar
